@@ -30,13 +30,28 @@ const App = () => {
     copy[selected] += 1;
     setPoints(copy);
   };
-  console.log(points);
+
+  const findItemWithMostVotes = () => {
+    const max = Math.max(...points);
+    const maxIndex = points.indexOf(max);
+    const foundItem = anecdotes[maxIndex];
+    return (
+      <>
+        <p> {foundItem} </p>
+        <p>{"Has " + max + " votes."}</p>
+      </>
+    );
+  };
+
   return (
     <div>
+      <h3>Anecdote of the day</h3>
       {anecdotes[selected]}
+      <p> {"Has " + points[selected] + " votes."} </p>
       <Button text="next anecdote" handleClick={handleButtonClick} />
       <Button text="vote" handleClick={handleVoteButtonClick} />
-      <p> {"has " + points[selected] + " votes"} </p>
+      <h3>Anecdote with most votes</h3>
+      {findItemWithMostVotes()}
     </div>
   );
 };

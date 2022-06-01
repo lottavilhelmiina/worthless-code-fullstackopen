@@ -17,7 +17,7 @@ const App = () => {
   ];
 
   const [selected, setSelected] = useState(0);
-  const [points = new Uint8Array(7), setPoints] = useState();
+  const [points, setPoints] = useState(new Uint8Array(7));
 
   const handleButtonClick = () => {
     var randomIndex = Math.floor(Math.random() * anecdotes.length);
@@ -28,7 +28,7 @@ const App = () => {
     const copy = [...points];
     console.log(copy);
     copy[selected] += 1;
-    setPoints({ points: copy });
+    setPoints(copy);
   };
   console.log(points);
   return (

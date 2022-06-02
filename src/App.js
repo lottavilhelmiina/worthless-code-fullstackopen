@@ -4,7 +4,8 @@ const Button = (props) => (
   <button onClick={props.handleClick}>{props.text}</button>
 );
 
-const Text = (props) => <text onClick={props.handleClick}>{props.text}</text>;
+const Text = (props) => <text>{props.text}</text>;
+
 const App = () => {
   const anecdotes = [
     "If it hurts, do it more often.",
@@ -20,7 +21,8 @@ const App = () => {
   const [points, setPoints] = useState(new Uint8Array(7));
 
   const handleButtonClick = () => {
-    var randomIndex = Math.floor(Math.random() * anecdotes.length);
+    const copy = [...anecdotes];
+    var randomIndex = Math.floor(Math.random() * copy.length);
     setSelected(randomIndex);
   };
 
@@ -48,8 +50,8 @@ const App = () => {
       <h3>Anecdote of the day</h3>
       {anecdotes[selected]}
       <p> {"Has " + points[selected] + " votes."} </p>
-      <Button text="next anecdote" handleClick={handleButtonClick} />
-      <Button text="vote" handleClick={handleVoteButtonClick} />
+      <Button text="NEXT ANECDOTE" handleClick={handleButtonClick} />
+      <Button text="VOTE" handleClick={handleVoteButtonClick} />
       <h3>Anecdote with most votes</h3>
       {findItemWithMostVotes()}
     </div>
